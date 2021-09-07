@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Ceci est la partie Back-end réalisée pour le projet n°6 du parcours développeur Web d’Openclassrooms.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorianV012/FlorianVilmot_6_03092021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlorianV012/FlorianVilmot_6_03092021/issues"
+  },
+  "homepage": "https://github.com/FlorianV012/FlorianVilmot_6_03092021#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5"
+  }
+}
