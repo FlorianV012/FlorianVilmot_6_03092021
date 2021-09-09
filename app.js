@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require("helmet");
 require('dotenv').config();
 const mongoose = require('mongoose');
 const path = require('path');
@@ -16,6 +17,8 @@ mongoose.connect(process.env.DB_mongoose,
 
 
 const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
