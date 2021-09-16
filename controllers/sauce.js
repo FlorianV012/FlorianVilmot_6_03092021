@@ -78,6 +78,7 @@ exports.likeSauce = (req, res, next) => {
     const userId = req.body.userId;
     const sauceId = req.params.id;
 
+    // En fonction du cas reçue la fonction enregistre le choix de l’utilisateur, le nombre de like ou dislike est incrémenté grâce à l’opérateur mongoDB $inc, ajout ou la suppression de l’id de l’utilisateur est réalisée grâce aux opérateurs $push et $pull.
     switch (like) {
         case 1:
             Sauce.updateOne({ _id: req.params.id }, { $push: { usersLiked: userId }, $inc: { likes: +1 } })
@@ -90,7 +91,7 @@ exports.likeSauce = (req, res, next) => {
                 .then(sauce => {
                     if (sauce.usersLiked.includes(userId)) {
                         Sauce.updateOne({ _id: sauceId }, { $pull: { usersLiked: userId }, $inc: { likes: -1 } })
-                            .then(() => res.status(200).json({ message: "J'aime !" }))
+                            .then(() => res.status(200).json({ message: "Je n'aime plus !" }))
                             .catch(error => res.status(400).json({ error }));
                     } else {
                         Sauce.updateOne({ _id: sauceId }, { $pull: { usersDisliked: userId }, $inc: { dislikes: -1 } })
@@ -98,9 +99,7 @@ exports.likeSauce = (req, res, next) => {
                             .catch(error => res.status(400).json({ error }));
                     }
                 })
-
                 .catch(error => res.status(400).json({ error }));
-
             break;
 
         case -1:
